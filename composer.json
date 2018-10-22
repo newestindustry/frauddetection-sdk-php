@@ -1,0 +1,15 @@
+{
+  "name": "newestindustry/frauddetectionservice",
+  "description": "Client SDK package to the NewestIndustry Fraud Detection Service",
+  "require": {
+    "php": "^5.5 || ^7.0",
+    "grpc/grpc": "v1.9.0",
+    "google/protobuf": "^v3.3.0",
+    "ext-grpc": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "NewestIndustry\\": "src/NewestIndustry"
+    }
+  }
+}
