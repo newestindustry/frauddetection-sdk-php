@@ -10,7 +10,7 @@ issued by Newest Industry.
 
 This package can be installed using composer.
 
-`composer require newestindustry/frauddetection`
+`composer require newestindustry/frauddetectionservice`
 
 To implement a basic order check implement like this and expand the order data.
 
