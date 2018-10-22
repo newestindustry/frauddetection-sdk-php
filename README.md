@@ -8,9 +8,9 @@ issued by Newest Industry.
 
 ## Usage
 
-This package can be installed using composer
+This package can be installed using composer.
 
-`composer require newestindustry/frauddetection-sdk-php`
+`composer require newestindustry/frauddetection`
 
 To implement a basic order check implement like this and expand the order data.
 
@@ -36,5 +36,5 @@ More information about grpc on PHP can be found [here](https://grpc.io/docs/quic
 
 ## Links
 
-More about [grpc](https://grpc.io/)
-More about [protobuf](https://developers.google.com/protocol-buffers/)
+- More about [grpc](https://grpc.io/)
+- More about [protobuf](https://developers.google.com/protocol-buffers/)
