@@ -96,7 +96,7 @@ message Product {
 
 message Address {
     // Post/zipcode (eg. in NLD format is p6: 1234AB)
-    string postcode = 1;
+    string postalcode = 1;
     // Dutch number splitting is used, so number is the first part and numeric (no leading zeroes possible)
     int32 number = 2;
     // Number addition is a string concatenation to number, case sensitive

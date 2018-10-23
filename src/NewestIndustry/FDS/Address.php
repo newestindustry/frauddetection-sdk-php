@@ -16,9 +16,9 @@ class Address extends \Google\Protobuf\Internal\Message
     /**
      * Post/zipcode (eg. in NLD format is p6: 1234AB)
      *
-     * Generated from protobuf field <code>string postcode = 1;</code>
+     * Generated from protobuf field <code>string postalcode = 1;</code>
      */
-    private $postcode = '';
+    private $postalcode = '';
     /**
      * Dutch number splitting is used, so number is the first part and numeric (no leading zeroes possible)
      *
@@ -62,7 +62,7 @@ class Address extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $postcode
+     *     @type string $postalcode
      *           Post/zipcode (eg. in NLD format is p6: 1234AB)
      *     @type int $number
      *           Dutch number splitting is used, so number is the first part and numeric (no leading zeroes possible)
@@ -86,25 +86,25 @@ class Address extends \Google\Protobuf\Internal\Message
     /**
      * Post/zipcode (eg. in NLD format is p6: 1234AB)
      *
-     * Generated from protobuf field <code>string postcode = 1;</code>
+     * Generated from protobuf field <code>string postalcode = 1;</code>
      * @return string
      */
-    public function getPostcode()
+    public function getPostalcode()
     {
-        return $this->postcode;
+        return $this->postalcode;
     }
 
     /**
      * Post/zipcode (eg. in NLD format is p6: 1234AB)
      *
-     * Generated from protobuf field <code>string postcode = 1;</code>
+     * Generated from protobuf field <code>string postalcode = 1;</code>
      * @param string $var
      * @return $this
      */
-    public function setPostcode($var)
+    public function setPostalcode($var)
     {
         GPBUtil::checkString($var, True);
-        $this->postcode = $var;
+        $this->postalcode = $var;
 
         return $this;
     }
