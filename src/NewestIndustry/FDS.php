@@ -13,12 +13,6 @@ use NewestIndustry\FDS\FraudDetectionServiceClient;
  */
 class FDS
 {
-    /** @var string FDS Hostname */
-    private $hostname = "frauddetection.newestindustry.nl";
-
-    /** @var string FDS Port */
-    private $port = "443";
-
     /** @var int Timeout in microseconds (1 s = 1 000 000 µs) */
     private $timeout = 10000000;
 
@@ -29,7 +23,7 @@ class FDS
      * FDS constructor.
      * @param $pem
      */
-    public function __construct($pem)
+    public function __construct($pem, $hostname = 'fraud.smartplatforms.io', $port = 443)
     {
         $this->client = new FraudDetectionServiceClient(sprintf("%s:%s", $this->hostname, $this->port), [
             'credentials' => ChannelCredentials::createSsl($pem, $pem, $pem),
@@ -79,37 +73,5 @@ class FDS
     public function setTimeout($timeout)
     {
         $this->timeout = $timeout;
-    }
-
-    /**
-     * @return string
-     */
-    public function getHostname()
-    {
-        return $this->hostname;
-    }
-
-    /**
-     * @param string $hostname
-     */
-    public function setHostname($hostname)
-    {
-        $this->hostname = $hostname;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPort()
-    {
-        return $this->port;
-    }
-
-    /**
-     * @param string $port
-     */
-    public function setPort($port)
-    {
-        $this->port = $port;
     }
 }

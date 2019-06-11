@@ -15,7 +15,7 @@ This package can be installed using composer.
 To implement a basic order check implement like this and expand the order data.
 
 ```php
-$fds = new \NewestIndustry\FDS($certificate);
+$fds = new \NewestIndustry\FDS($certificate); //optional parameters $hostname, $port
 
 $cor = new \NewestIndustry\FDS\CheckOrderRequest();
 $cor->setOrder(new \NewestIndustry\FDS\Order());

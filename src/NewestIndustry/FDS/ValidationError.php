@@ -12,20 +12,20 @@ use Google\Protobuf\Internal\GPBUtil;
  * CheckError is the error struct used to return all errors thrown during calculation so this may contain
  * specific issues about backend connections
  *
- * Generated from protobuf message <code>frauddetection_v1.CheckError</code>
+ * Generated from protobuf message <code>frauddetection_v1.ValidationError</code>
  */
-class CheckError extends \Google\Protobuf\Internal\Message
+class ValidationError extends \Google\Protobuf\Internal\Message
 {
     /**
      * Type holds the check type
      *
-     * Generated from protobuf field <code>string type = 1;</code>
+     * Generated from protobuf field <code>string field = 1;</code>
      */
-    private $type = '';
+    private $field = '';
     /**
      * Errors gives the errors encountered (in english)
      *
-     * Generated from protobuf field <code>repeated string errors = 2;</code>
+     * Generated from protobuf field <code>repeated .frauddetection_v1.Error errors = 2;</code>
      */
     private $errors;
 
@@ -35,9 +35,9 @@ class CheckError extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $type
+     *     @type string $field
      *           Type holds the check type
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \NewestIndustry\FDS\Error[]|\Google\Protobuf\Internal\RepeatedField $errors
      *           Errors gives the errors encountered (in english)
      * }
      */
@@ -49,25 +49,25 @@ class CheckError extends \Google\Protobuf\Internal\Message
     /**
      * Type holds the check type
      *
-     * Generated from protobuf field <code>string type = 1;</code>
+     * Generated from protobuf field <code>string field = 1;</code>
      * @return string
      */
-    public function getType()
+    public function getField()
     {
-        return $this->type;
+        return $this->field;
     }
 
     /**
      * Type holds the check type
      *
-     * Generated from protobuf field <code>string type = 1;</code>
+     * Generated from protobuf field <code>string field = 1;</code>
      * @param string $var
      * @return $this
      */
-    public function setType($var)
+    public function setField($var)
     {
         GPBUtil::checkString($var, True);
-        $this->type = $var;
+        $this->field = $var;
 
         return $this;
     }
@@ -75,7 +75,7 @@ class CheckError extends \Google\Protobuf\Internal\Message
     /**
      * Errors gives the errors encountered (in english)
      *
-     * Generated from protobuf field <code>repeated string errors = 2;</code>
+     * Generated from protobuf field <code>repeated .frauddetection_v1.Error errors = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getErrors()
@@ -86,13 +86,13 @@ class CheckError extends \Google\Protobuf\Internal\Message
     /**
      * Errors gives the errors encountered (in english)
      *
-     * Generated from protobuf field <code>repeated string errors = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .frauddetection_v1.Error errors = 2;</code>
+     * @param \NewestIndustry\FDS\Error[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setErrors($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \NewestIndustry\FDS\Error::class);
         $this->errors = $arr;
 
         return $this;

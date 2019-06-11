@@ -2,6 +2,9 @@ syntax = "proto3";
 
 package frauddetection_v1;
 
+option php_namespace = "NewestIndustry\\FDS";
+option php_metadata_namespace = "NewestIndustry\\GPBMetadata";
+
 service FraudDetectionService {
     // CheckOrder runs the order through a series of validations and checks and returns a Fraud Probability Score between
     // 0 and 1, where 0 is least probable to be fraud and 1 is most probable to be fraud.
@@ -94,40 +97,6 @@ message Product {
     int64 price = 4;
 }
 
-message Address {
-    // Post/zipcode (eg. in NLD format is p6: 1234AB)
-    string postalcode = 1;
-    // Dutch number splitting is used, so number is the first part and numeric (no leading zeroes possible)
-    int32 number = 2;
-    // Number addition is a string concatenation to number, case sensitive
-    string number_addition = 3;
-    // Number addition is a string concatenation to number after number_addition, case sensitive, usually joined with -
-    string number_letter = 4;
-    // Streeet name
-    string street = 5;
-    // City name
-    string city = 6;
-    // Country code (ISO 3166-1 alpha-3, eg. NLD)
-    string country = 7;
-}
-
-message Merchant {
-    // Merchant ID
-    string id = 1;
-    // Merchant name
-    string name = 2;
-    // Chamber of Commerce ID (eg. in NLD this is the KVK Nummer)
-    string coc_id = 3;
-    // Merchant address
-    Address address = 4;
-    // Merchant email address
-    string email = 5;
-    // Merchant phone number (using E.164)
-    string phone = 6;
-    // Merchant URL (website)
-    string url = 7;
-}
-
 message Customer {
     // Customer ID
     string id = 1;
@@ -163,4 +132,83 @@ message Timestamp {
     // that count forward in time. Must be from 0 to 999,999,999
     // inclusive.
     int32 nanos = 2;
+}
+
+service MerchantService {
+    rpc Create (MerchantSaveRequest) returns (MerchantSaveResponse) {}
+    rpc Update (MerchantSaveRequest) returns (MerchantSaveResponse) {}
+    rpc List (MerchantListRequest) returns (MerchantListResponse) {}
+}
+
+/* Address is for the containing regular (dutch) address information. */
+message Address {
+    // Post/zipcode (eg. in NLD format is p6: 1234AB)
+    string postal_code = 1;
+    // Dutch number splitting is used, so number is the first part and numeric (no leading zeroes possible)
+    int32 number = 2;
+    // Number addition is a string concatenation to number, case sensitive
+    string number_addition = 3;
+    // Number addition is a string concatenation to number after number_addition, case sensitive, usually joined with -
+    string number_letter = 4;
+    // Streeet name
+    string street = 5;
+    // City name
+    string city = 6;
+}
+
+/* Merchant represents the party that is making to sale to a client, coc stands for chamber of commerce and
+   the order prices represent the prices that are common for that merchant. */
+message Merchant {
+    // Merchant ID
+    string id = 1;
+    // Merchant name
+    string name = 2;
+    // Chamber of Commerce ID (eg. in NLD this is the KVK Nummer)
+    string coc_number = 3;
+    // Merchant address
+    Address address = 4;
+    // Merchant minimum order amount
+    int64 order_amount_min = 5;
+    // Merchant maximum order amount
+    int64 order_amount_max = 6;
+    // Merchant email address
+    string email = 7;
+    // Merchant phone number (using E.164)
+    string phone = 8;
+    // Merchant URL (website)
+    string url = 9;
+}
+
+message MerchantSaveRequest {
+    Merchant merchant = 1;
+}
+
+message MerchantSaveResponse {
+    Merchant merchant = 1;
+
+    // Errors will contain a collection of errors thrown during calculation (e.g. Data validation)
+    repeated ValidationError validation_errors = 2;
+}
+
+message MerchantListRequest {
+}
+
+message MerchantListResponse {
+    repeated Merchant merchants = 1;
+}
+
+message Error {
+    // Label defines an identifiable slug of the error
+    string label = 1;
+    // Message contains a more elaborate explanation why error is triggered
+    string message = 2;
+}
+
+// CheckError is the error struct used to return all errors thrown during calculation so this may contain
+// specific issues about backend connections
+message ValidationError {
+    // Type holds the check type
+    string field = 1;
+    // Errors gives the errors encountered (in english)
+    repeated Error errors = 2;
 }
